@@ -1,31 +1,51 @@
-# Clara Answers — Zero-Cost Automation Pipeline
+## Clara AI – Local Agent Configuration Toolkit
 
-> AI voice agent onboarding automation for service trade businesses.  
-> Demo Call → Account Memo → Retell Agent v1 → Onboarding → Agent v2  
-> **100% zero-cost. Local-first. GitHub-native.**
+Clara AI is a small, self‑contained project that takes raw customer call data and
+turns it into structured JSON artifacts:
+
+- Account memos (`memo_v1.json`, `memo_v2.json`) that summarize how the business operates
+- Retell‑ready agent specs (`agent_v1.json`, `agent_v2.json`) that describe how the voice agent should behave
+
+Everything runs locally using plain Python and the filesystem; there are no
+hosted dependencies or required paid services.
 
 ---
 
-## Quick Start
+## Quick Start (Most Common Path)
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/Om334exe/clara-ai-agent.git
-cd clara-ai-agent
+# 1. Clone this repository
+git clone https://github.com/samriddhidvd/Clara_AI.git
+cd Clara_AI
 
-# 2. Add your transcripts (or use the included synthetic ones)
+# 2. (Optional) create and activate a virtualenv
+python -m venv .venv
+.\.venv\Scripts\activate  # on Windows
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Make sure demo + onboarding transcripts exist
 #    data/demo/account_<id>_demo.txt
 #    data/onboarding/account_<id>_onboarding.txt
 
-# 3. Run the full pipeline
-python3 run_pipeline.py
+# 5. Run the batch pipeline (idempotent)
+python run_pipeline.py
 
-# 4. View outputs
+# 6. Explore per‑account outputs
 ls outputs/accounts/
 
-# 5. Launch the dashboard
-python3 -m http.server 8080
-# Open: http://localhost:8080/dashboard.html
+# 7. Launch the static dashboard
+python -m http.server 8080
+# → open http://localhost:8080/dashboard.html
+```
+
+You can also use the richer CLI entry in `main.py`:
+
+```bash
+python main.py run        # run pipeline with flags
+python main.py status     # inspect SQLite status
+python main.py transcribe # Whisper‑based audio → text
 ```
 
 ---
