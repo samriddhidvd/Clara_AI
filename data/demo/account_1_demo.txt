@@ -1,0 +1,9 @@
+Client: Hi, I'm Bob from Bob's Plumbing. We miss a lot of calls when out on jobs.
+Agent: I see, what are your business hours?
+Client: Mon to Fri, 8 AM to 5 PM Eastern Time.
+Agent: Do you handle emergencies?
+Client: Yes, burst pipes are our main emergency. 
+Agent: How should emergencies be routed after hours?
+Client: They should probably just go straight to my cell phone, I guess.
+Agent: Got it. Any other services?
+Client: Just general plumbing maintenance.

@@ -1,0 +1,9 @@
+Client: Hey, Sarah from Apex Fire Protection. Our volume of calls is overwhelming.
+Agent: What are your regular hours?
+Client: 7am to 4pm, Mon-Fri, Pacific Time.
+Agent: What constitutes an emergency for you?
+Client: Active sprinkler leaks or fire alarms going off.
+Agent: How are emergency calls handled?
+Client: We want them routed to the on-call tech, but we'll figure out the exact number later.
+Agent: What about non-emergencies?
+Client: Take a message.

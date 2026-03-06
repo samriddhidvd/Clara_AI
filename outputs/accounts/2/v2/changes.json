@@ -1,0 +1,37 @@
+{
+    "account_id": "2",
+    "generated_at": "2026-03-06T14:12:04.253553",
+    "changes_count": 4,
+    "resolved_unknowns": [],
+    "remaining_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "changes": [
+        {
+            "field": "business_hours",
+            "before": "7am to 4pm, Mon-Fri, Pacific Time Pacific",
+            "after": "actually 7am to 5pm, not 4pm",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "emergency_routing_rules",
+            "before": "te",
+            "after": "555-0200",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "call_transfer_rules",
+            "before": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+            "after": "Fallback: Client: Apologize and say dispatch will call back in 5 mins",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "integration_constraints",
+            "before": [],
+            "after": [
+                "Never create sprinkler jobs in ServiceTrade"
+            ],
+            "reason": "Updated from onboarding call"
+        }
+    ]
+}

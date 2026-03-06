@@ -1,0 +1,28 @@
+{
+    "account_id": "4",
+    "company_name": "Jim's Electric",
+    "business_hours": "UNKNOWN \u2013 see questions_or_unknowns",
+    "timezone": "Mountain",
+    "office_address": "UNKNOWN",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "Electrical here"
+    ],
+    "emergency_definition": [],
+    "emergency_routing_rules": "555-0400",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Fallback: otify dispatch via email and inform caller",
+    "integration_constraints": [
+        "don't do residential solar",
+        "make sure to tag calls as 'Urgent' if emergency"
+    ],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [
+        "business_hours: Not specified in demo call",
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "data_source": "onboarding_call",
+    "extracted_at": "2026-03-06T14:12:04.282597",
+    "notes": "v2 \u2013 Confirmed onboarding. 3 field(s) updated. 2 unknown(s) remain."
+}

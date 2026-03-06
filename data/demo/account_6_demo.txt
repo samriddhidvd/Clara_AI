@@ -1,0 +1,13 @@
+Client: Hi, I'm Ben from Ben's Electric Solutions.
+Agent: How can I help you today?
+Client: We need help answering calls when our electricians are out on the field.
+Agent: Okay, what are your business hours?
+Client: Typically Monday through Friday, 8 AM to 5 PM Eastern Time.
+Agent: What do you consider an emergency?
+Client: Sparking panels, complete power loss, or exposed live wires.
+Agent: How should we route emergencies?
+Client: Route them to our lead tech at 555-1000.
+Agent: What about non-emergencies?
+Client: Take a message, we'll callback.
+Agent: Any other services you provide?
+Client: General residential and commercial wiring.

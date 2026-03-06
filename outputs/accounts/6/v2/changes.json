@@ -1,0 +1,32 @@
+{
+    "account_id": "6",
+    "generated_at": "2026-03-06T14:12:04.310721",
+    "changes_count": 3,
+    "resolved_unknowns": [],
+    "remaining_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "changes": [
+        {
+            "field": "emergency_routing_rules",
+            "before": "555-1000.",
+            "after": "555-9999",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "call_transfer_rules",
+            "before": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+            "after": "Fallback: 911 immediately if there is a fire risk, otherwise we will call them back in 15 minutes",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "integration_constraints",
+            "before": [],
+            "after": [
+                "Never schedule new breaker installations without an on-site quote first, tag all such jobs as 'Needs Review'",
+                "tag all such jobs as 'Needs Review'"
+            ],
+            "reason": "Updated from onboarding call"
+        }
+    ]
+}

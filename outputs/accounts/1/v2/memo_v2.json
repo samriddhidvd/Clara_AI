@@ -1,0 +1,28 @@
+{
+    "account_id": "1",
+    "company_name": "Bob from Bob's Plumbing",
+    "business_hours": "8 AM to 5 PM Eastern Time Eastern",
+    "timezone": "Eastern",
+    "office_address": "UNKNOWN",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "Plumbing",
+        "plumbing maintenance",
+        "maintenance"
+    ],
+    "emergency_definition": [
+        "Yes, burst pipes are our main emergency."
+    ],
+    "emergency_routing_rules": "555-0199 (Dispatch)",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Fallback: text them immediately and hang up",
+    "integration_constraints": [
+        "Don't schedule jobs for weekends"
+    ],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [],
+    "data_source": "onboarding_call",
+    "extracted_at": "2026-03-06T14:12:04.237909",
+    "notes": "v2 \u2013 Confirmed onboarding. 3 field(s) updated. 0 unknown(s) remain."
+}

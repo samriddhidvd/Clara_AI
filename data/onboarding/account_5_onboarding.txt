@@ -1,0 +1,7 @@
+Agent: Facility Pros onboarding.
+Client: Our dedicated emergency hotline is 555-0500.
+Agent: Fallback?
+Client: Just say someone is on the way.
+Agent: Non-emergencies?
+Client: Take message, we'll email them within 24 hours.
+Client: Also, we don't do snow removal anymore.

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clara AI – Pipeline Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --blue: #58a6ff;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --red: #f85149;
+      --purple: #bc8cff;
+      --accent: #1f6feb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, var(--accent) 0%, #6e40c9 100%);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header h1 { font-size: 1.6rem; font-weight: 700; }
+    header p  { font-size: 0.85rem; opacity: 0.85; }
+    .logo { font-size: 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-card .num { font-size: 2.2rem; font-weight: 700; }
+    .stat-card .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+    .stat-card.blue .num { color: var(--blue); }
+    .stat-card.green .num { color: var(--green); }
+    .stat-card.yellow .num { color: var(--yellow); }
+    .stat-card.red .num { color: var(--red); }
+
+    h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Account grid */
+    .accounts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .account-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+    .account-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .account-card.active { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(88,166,255,0.3); }
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-header .company { font-weight: 600; font-size: 1rem; }
+    .card-header .id { font-size: 0.75rem; color: var(--text-muted); }
+    .version-badges { display: flex; gap: 8px; margin-top: 4px; }
+    .badge {
+      font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px;
+    }
+    .badge.v1 { background: rgba(88,166,255,0.15); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+    .badge.v2 { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+    .badge.unknown { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.3); }
+    .card-body { padding: 16px 20px; }
+    .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; }
+    .info-row .key { color: var(--text-muted); }
+    .info-row .val { font-weight: 500; text-align: right; max-width: 55%; word-break: break-word; }
+    .unknowns-chip {
+      display: inline-block; margin-top: 8px;
+      background: rgba(210,153,34,0.1); color: var(--yellow);
+      border: 1px solid rgba(210,153,34,0.3);
+      border-radius: 6px; padding: 4px 10px; font-size: 0.75rem;
+    }
+
+    /* Detail panel */
+    .detail-panel {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 40px;
+      display: none;
+    }
+    .detail-panel.visible { display: block; }
+    .tab-bar { display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .tab {
+      padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; border: 1px solid transparent; color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .tab.active { background: rgba(88,166,255,0.1); color: var(--blue); border-color: rgba(88,166,255,0.3); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    pre {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px; font-size: 0.8rem;
+      overflow-x: auto; white-space: pre-wrap; word-break: break-word;
+      line-height: 1.6; max-height: 500px; overflow-y: auto;
+    }
+
+    /* Diff viewer */
+    .diff-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .diff-table th { 
+      text-align: left; padding: 10px 14px; 
+      background: var(--bg3); border-bottom: 1px solid var(--border); 
+      color: var(--text-muted); font-weight: 600;
+    }
+    .diff-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .diff-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .diff-removed { color: var(--red); background: rgba(248,81,73,0.08); }
+    .diff-added   { color: var(--green); background: rgba(63,185,80,0.08); }
+    .field-name { font-family: monospace; font-size: 0.8rem; color: var(--purple); }
+
+    /* Prompt viewer */
+    .prompt-box {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+      padding: 20px; white-space: pre-wrap; font-size: 0.82rem; line-height: 1.7;
+      max-height: 600px; overflow-y: auto; font-family: monospace;
+    }
+    .prompt-box .section-header { color: var(--blue); font-weight: 700; }
+
+    /* Empty state */
+    .empty { text-align: center; padding: 60px; color: var(--text-muted); }
+    .empty .icon { font-size: 3rem; margin-bottom: 12px; }
+    
+    footer {
+      text-align: center; padding: 24px;
+      color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🤖</div>
+  <div>
+    <h1>Clara AI — Pipeline Dashboard</h1>
+    <p>Zero-cost automation: Demo → Retell Agent → Onboarding → Production v2</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats-bar" id="stats-bar">
+    <div class="stat-card blue"><div class="num" id="stat-total">—</div><div class="label">Total Accounts</div></div>
+    <div class="stat-card green"><div class="num" id="stat-v2">—</div><div class="label">V2 Ready</div></div>
+    <div class="stat-card blue"><div class="num" id="stat-v1">—</div><div class="label">V1 Only</div></div>
+    <div class="stat-card yellow"><div class="num" id="stat-unknowns">—</div><div class="label">Open Unknowns</div></div>
+  </div>
+
+  <h2>Accounts</h2>
+  <div class="accounts-grid" id="accounts-grid">
+    <div class="empty"><div class="icon">📁</div><p>Loading accounts from outputs/...</p></div>
+  </div>
+
+  <!-- Detail panel -->
+  <div class="detail-panel" id="detail-panel">
+    <h2 id="detail-title">Account Details</h2>
+    <div class="tab-bar">
+      <div class="tab active" onclick="switchTab('memo-v1')">Memo v1</div>
+      <div class="tab" onclick="switchTab('memo-v2')">Memo v2</div>
+      <div class="tab" onclick="switchTab('diff')">Diff Viewer</div>
+      <div class="tab" onclick="switchTab('prompt-v1')">Agent Prompt v1</div>
+      <div class="tab" onclick="switchTab('prompt-v2')">Agent Prompt v2</div>
+    </div>
+    <div id="tab-memo-v1" class="tab-content active"><pre id="memo-v1-content">Loading...</pre></div>
+    <div id="tab-memo-v2" class="tab-content"><pre id="memo-v2-content">Loading...</pre></div>
+    <div id="tab-diff" class="tab-content">
+      <table class="diff-table" id="diff-table">
+        <thead><tr><th>Field</th><th>V1 (Demo)</th><th>V2 (Onboarding)</th></tr></thead>
+        <tbody id="diff-body"></tbody>
+      </table>
+    </div>
+    <div id="tab-prompt-v1" class="tab-content"><div class="prompt-box" id="prompt-v1-content">Loading...</div></div>
+    <div id="tab-prompt-v2" class="tab-content"><div class="prompt-box" id="prompt-v2-content">Loading...</div></div>
+  </div>
+
+</div>
+
+<footer>Clara AI Pipeline &mdash; Zero-Cost Automation &mdash; Built for the Clara Answers Intern Assignment</footer>
+
+<script>
+  // Config: set your outputs path structure. This dashboard reads local JSON files.
+  // To serve: cd /home/om/Desktop/ClaraAI && python3 -m http.server 8080
+  // Then open: http://localhost:8080/dashboard.html
+  
+  const ACCOUNTS_ROOT = "outputs/accounts";
+  let accountsData = {};
+  let activeId = null;
+
+  // List known accounts by probing batch_summary.json or hardcoded IDs
+  async function loadSummary() {
+    try {
+      const resp = await fetch("outputs/batch_summary.json");
+      if (resp.ok) return await resp.json();
+    } catch {}
+    return null;
+  }
+
+  async function fetchJSON(path) {
+    try {
+      const r = await fetch(path);
+      if (!r.ok) return null;
+      return await r.json();
+    } catch { return null; }
+  }
+
+  async function init() {
+    const summary = await loadSummary();
+    let accountIds = [];
+    
+    if (summary && summary.accounts) {
+      accountIds = summary.accounts.map(a => a.account_id);
+    } else {
+      // Discover accounts 1-20
+      for (let i = 1; i <= 20; i++) {
+        const m = await fetchJSON(`${ACCOUNTS_ROOT}/${i}/v1/memo_v1.json`);
+        if (m) accountIds.push(String(i));
+      }
+    }
+
+    // Load data for each account
+    for (const id of accountIds) {
+      const v1memo  = await fetchJSON(`${ACCOUNTS_ROOT}/${id}/v1/memo_v1.json`);
+      const v2memo  = await fetchJSON(`${ACCOUNTS_ROOT}/${id}/v2/memo_v2.json`);
+      const agentV1 = await fetchJSON(`${ACCOUNTS_ROOT}/${id}/v1/agent_v1.json`);
+      const agentV2 = await fetchJSON(`${ACCOUNTS_ROOT}/${id}/v2/agent_v2.json`);
+      const changes = await fetchJSON(`${ACCOUNTS_ROOT}/${id}/v2/changes.json`);
+      accountsData[id] = { v1memo, v2memo, agentV1, agentV2, changes };
+    }
+
+    renderStats();
+    renderCards();
+  }
+
+  function renderStats() {
+    const ids = Object.keys(accountsData);
+    const v2Count = ids.filter(id => accountsData[id].v2memo).length;
+    const v1Only  = ids.filter(id => !accountsData[id].v2memo).length;
+    const unknownTotal = ids.reduce((acc, id) => {
+      const m = accountsData[id].v2memo || accountsData[id].v1memo;
+      return acc + ((m && m.questions_or_unknowns) ? m.questions_or_unknowns.length : 0);
+    }, 0);
+
+    document.getElementById("stat-total").textContent = ids.length;
+    document.getElementById("stat-v2").textContent = v2Count;
+    document.getElementById("stat-v1").textContent = v1Only;
+    document.getElementById("stat-unknowns").textContent = unknownTotal;
+  }
+
+  function renderCards() {
+    const grid = document.getElementById("accounts-grid");
+    grid.innerHTML = "";
+    const ids = Object.keys(accountsData).sort((a,b) => Number(a)-Number(b));
+    if (ids.length === 0) {
+      grid.innerHTML = `<div class="empty"><div class="icon">📭</div><p>No accounts found. Run the pipeline first.</p></div>`;
+      return;
+    }
+
+    for (const id of ids) {
+      const {v1memo, v2memo} = accountsData[id];
+      const memo = v2memo || v1memo;
+      if (!memo) continue;
+      const company = memo.company_name || "Unknown";
+      const hours = memo.business_hours || "—";
+      const emerg = (memo.emergency_definition || []).join(", ") || "—";
+      const routing = memo.emergency_routing_rules || "—";
+      const unknowns = (memo.questions_or_unknowns || []).length;
+      const hasV2 = !!v2memo;
+
+      const card = document.createElement("div");
+      card.className = "account-card";
+      card.id = `card-${id}`;
+      card.onclick = () => showDetail(id);
+      card.innerHTML = `
+        <div class="card-header">
+          <div>
+            <div class="company">${company}</div>
+            <div class="id">Account #${id}</div>
+          </div>
+          <div class="version-badges">
+            <span class="badge v1">v1</span>
+            ${hasV2 ? '<span class="badge v2">v2 ✓</span>' : '<span class="badge unknown">awaiting onboarding</span>'}
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row"><span class="key">Hours</span><span class="val">${hours}</span></div>
+          <div class="info-row"><span class="key">Emergency</span><span class="val">${emerg.substring(0,50)}${emerg.length>50?'…':''}</span></div>
+          <div class="info-row"><span class="key">Routing</span><span class="val">${routing.substring(0,50)}${routing.length>50?'…':''}</span></div>
+          ${unknowns > 0 ? `<div><span class="unknowns-chip">⚠ ${unknowns} unknown${unknowns>1?'s':''}</span></div>` : ''}
+        </div>`;
+      grid.appendChild(card);
+    }
+  }
+
+  function showDetail(id) {
+    // Deactivate previous
+    if (activeId) document.getElementById(`card-${activeId}`)?.classList.remove("active");
+    activeId = id;
+    document.getElementById(`card-${id}`)?.classList.add("active");
+
+    const {v1memo, v2memo, agentV1, agentV2, changes} = accountsData[id];
+    const company = (v2memo || v1memo)?.company_name || `Account ${id}`;
+    document.getElementById("detail-title").textContent = `${company} — Account #${id}`;
+
+    // Memo tabs
+    document.getElementById("memo-v1-content").textContent = v1memo ? JSON.stringify(v1memo, null, 2) : "Not available";
+    document.getElementById("memo-v2-content").textContent = v2memo ? JSON.stringify(v2memo, null, 2) : "No onboarding data yet";
+
+    // Diff tab
+    const tbody = document.getElementById("diff-body");
+    tbody.innerHTML = "";
+    if (v1memo && v2memo) {
+      const allKeys = [...new Set([...Object.keys(v1memo), ...Object.keys(v2memo)])];
+      let diffCount = 0;
+      for (const key of allKeys) {
+        if (["extracted_at","notes","data_source"].includes(key)) continue;
+        const v1val = JSON.stringify(v1memo[key] ?? "—");
+        const v2val = JSON.stringify(v2memo[key] ?? "—");
+        if (v1val !== v2val) {
+          diffCount++;
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td class="field-name">${key}</td>
+            <td class="diff-removed">${v1val}</td>
+            <td class="diff-added">${v2val}</td>`;
+          tbody.appendChild(row);
+        }
+      }
+      if (!diffCount) {
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;padding:24px;color:var(--text-muted)">No differences detected between v1 and v2</td></tr>`;
+      }
+    } else {
+      tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;padding:24px;color:var(--text-muted)">One or both memo versions not available</td></tr>`;
+    }
+
+    // Prompt tabs
+    const fmt = (spec) => spec ? spec.system_prompt : "Agent spec not available";
+    document.getElementById("prompt-v1-content").textContent = fmt(agentV1);
+    document.getElementById("prompt-v2-content").textContent = fmt(agentV2);
+
+    const panel = document.getElementById("detail-panel");
+    panel.classList.add("visible");
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Reset to first tab
+    switchTab('memo-v1');
+  }
+
+  function switchTab(name) {
+    document.querySelectorAll(".tab").forEach((t, i) => {
+      const tabNames = ['memo-v1','memo-v2','diff','prompt-v1','prompt-v2'];
+      t.classList.toggle("active", tabNames[i] === name);
+    });
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+    document.getElementById(`tab-${name}`).classList.add("active");
+  }
+
+  init();
+</script>
+</body>
+</html>

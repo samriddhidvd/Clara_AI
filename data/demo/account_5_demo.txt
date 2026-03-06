@@ -1,0 +1,9 @@
+Client: Tom from Facility Pros. We manage 10 buildings.
+Agent: Hours of operation?
+Client: 24/7, but the office is 9-5 Eastern.
+Agent: Emergencies?
+Client: Any safety issue or water leak.
+Agent: Emergency routing?
+Client: We have a dedicated hotline.
+Agent: Services?
+Client: General maintenance, landscaping, snow removal.

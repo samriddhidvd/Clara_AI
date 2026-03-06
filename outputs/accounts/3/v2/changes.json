@@ -1,0 +1,25 @@
+{
+    "account_id": "3",
+    "generated_at": "2026-03-06T14:12:04.270997",
+    "changes_count": 2,
+    "resolved_unknowns": [
+        "emergency_routing_rules: No routing number provided \u2013 confirm during onboarding"
+    ],
+    "remaining_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "changes": [
+        {
+            "field": "emergency_routing_rules",
+            "before": "UNKNOWN \u2013 to be confirmed at onboarding",
+            "after": "555-0300",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "call_transfer_rules",
+            "before": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+            "after": "Fallback: cing high volume and collect details",
+            "reason": "Updated from onboarding call"
+        }
+    ]
+}

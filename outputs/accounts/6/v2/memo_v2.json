@@ -1,0 +1,27 @@
+{
+    "account_id": "6",
+    "company_name": "Ben from Ben's Electric Solutions",
+    "business_hours": "8 AM to 5 PM Eastern Time Eastern",
+    "timezone": "Eastern",
+    "office_address": "UNKNOWN",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "wiring"
+    ],
+    "emergency_definition": [],
+    "emergency_routing_rules": "555-9999",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Fallback: 911 immediately if there is a fire risk, otherwise we will call them back in 15 minutes",
+    "integration_constraints": [
+        "Never schedule new breaker installations without an on-site quote first, tag all such jobs as 'Needs Review'",
+        "tag all such jobs as 'Needs Review'"
+    ],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "data_source": "onboarding_call",
+    "extracted_at": "2026-03-06T14:12:04.310414",
+    "notes": "v2 \u2013 Confirmed onboarding. 3 field(s) updated. 1 unknown(s) remain."
+}

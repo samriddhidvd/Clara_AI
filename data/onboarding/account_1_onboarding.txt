@@ -1,0 +1,8 @@
+Agent: Welcome to onboarding, Bob's Plumbing.
+Client: Hi. We need to confirm a few things. 
+Agent: Let's confirm your emergency routing.
+Client: Actually, my cell is too busy. Send emergencies to 555-0199 (Dispatch). 
+Agent: What if the transfer fails?
+Client: If transfer fails, tell them we will text them immediately and hang up.
+Agent: Any system constraints?
+Client: Don't schedule jobs for weekends.

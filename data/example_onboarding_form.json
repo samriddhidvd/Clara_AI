@@ -1,0 +1,31 @@
+{
+    "company_name": "Ben's Electric Solutions",
+    "business_hours_days": "Monday-Friday",
+    "business_hours_start": "8:00 AM",
+    "business_hours_end": "5:00 PM",
+    "timezone": "Eastern",
+    "office_address": "123 Main St, Calgary, AB",
+    "services_supported": [
+        "residential wiring",
+        "commercial wiring",
+        "panel upgrades"
+    ],
+    "emergency_definition": [
+        "sparking panels",
+        "power loss",
+        "exposed live wires"
+    ],
+    "emergency_routing_number": "555-9999",
+    "emergency_routing_order": [
+        "Lead technician",
+        "Dispatch backup"
+    ],
+    "transfer_timeout_seconds": 30,
+    "transfer_fail_action": "Apologize, assure callback in 15 minutes",
+    "non_emergency_routing": "Take message and confirm follow-up next business day",
+    "integration_constraints": [
+        "Never schedule breaker installs without on-site quote",
+        "Tag urgent jobs as Needs Review"
+    ],
+    "additional_notes": ""
+}

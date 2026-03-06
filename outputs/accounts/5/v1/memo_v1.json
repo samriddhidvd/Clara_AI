@@ -1,0 +1,25 @@
+{
+    "account_id": "5",
+    "company_name": "Facility Pros",
+    "business_hours": "24/7 Eastern",
+    "timezone": "Eastern",
+    "office_address": "5 Eastern.",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "maintenance, landscaping, snow removal",
+        "landscaping, snow removal"
+    ],
+    "emergency_definition": [],
+    "emergency_routing_rules": ".",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+    "integration_constraints": [],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "data_source": "demo_call",
+    "extracted_at": "2026-03-06T14:12:04.288946",
+    "notes": "v1 \u2013 Preliminary. Generated from demo call transcript. 1 unknown(s) flagged."
+}

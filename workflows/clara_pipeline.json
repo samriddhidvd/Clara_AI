@@ -1,0 +1,146 @@
+{
+    "name": "Clara Answers – Full Automation Pipeline",
+    "description": "Orchestrates Demo → v1 and Onboarding → v2 for all accounts",
+    "nodes": [
+        {
+            "id": "trigger",
+            "name": "Manual Trigger",
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                100,
+                300
+            ]
+        },
+        {
+            "id": "list_demos",
+            "name": "List Demo Files",
+            "type": "n8n-nodes-base.readBinaryFile",
+            "parameters": {
+                "filePath": "={{ $env.CLARA_DEMO_DIR || 'data/demo' }}"
+            },
+            "typeVersion": 1,
+            "position": [
+                300,
+                300
+            ]
+        },
+        {
+            "id": "pipeline_a",
+            "name": "Pipeline A – Demo → v1",
+            "type": "n8n-nodes-base.executeCommand",
+            "parameters": {
+                "command": "cd {{ $env.CLARA_ROOT || '/clara-pipeline' }} && python3 run_pipeline.py --demo-dir {{ $env.CLARA_DEMO_DIR || 'data/demo' }} --onboarding-dir {{ $env.CLARA_ONBOARDING_DIR || 'data/onboarding' }}"
+            },
+            "typeVersion": 1,
+            "position": [
+                550,
+                300
+            ],
+            "notes": "Runs full batch pipeline (idempotent). Outputs go to outputs/accounts/<id>/v1 and v2."
+        },
+        {
+            "id": "read_summary",
+            "name": "Read Batch Summary",
+            "type": "n8n-nodes-base.readBinaryFile",
+            "parameters": {
+                "filePath": "outputs/batch_summary.json"
+            },
+            "typeVersion": 1,
+            "position": [
+                800,
+                300
+            ]
+        },
+        {
+            "id": "log_task",
+            "name": "Log Task (Mock Tracker)",
+            "type": "n8n-nodes-base.writeBinaryFile",
+            "parameters": {
+                "fileName": "outputs/task_tracker.log",
+                "dataPropertyName": "data"
+            },
+            "typeVersion": 1,
+            "position": [
+                1050,
+                300
+            ],
+            "notes": "Replace this node with Asana / Linear / GitHub Issues API for production task tracking"
+        },
+        {
+            "id": "schedule",
+            "name": "Scheduled Trigger (Optional)",
+            "type": "n8n-nodes-base.cron",
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "hoursInterval": 24
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 1,
+            "position": [
+                100,
+                500
+            ],
+            "notes": "Enable to run pipeline automatically every 24h"
+        }
+    ],
+    "connections": {
+        "trigger": {
+            "main": [
+                [
+                    {
+                        "node": "pipeline_a",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "schedule": {
+            "main": [
+                [
+                    {
+                        "node": "pipeline_a",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "pipeline_a": {
+            "main": [
+                [
+                    {
+                        "node": "read_summary",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "read_summary": {
+            "main": [
+                [
+                    {
+                        "node": "log_task",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {},
+    "id": "clara_full_pipeline_v2",
+    "environment_variables": {
+        "CLARA_ROOT": "/path/to/clara-ai-agent",
+        "CLARA_DEMO_DIR": "data/demo",
+        "CLARA_ONBOARDING_DIR": "data/onboarding"
+    }
+}

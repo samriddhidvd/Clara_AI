@@ -1,0 +1,58 @@
+{
+    "started_at": "2026-03-06T15:37:27.152338",
+    "accounts": [
+        {
+            "account_id": "1",
+            "demo_file": "account_1_demo.txt",
+            "onboarding_file": "account_1_onboarding.txt",
+            "v1_status": "skipped (already exists)",
+            "v2_status": "skipped (already exists)",
+            "errors": []
+        },
+        {
+            "account_id": "2",
+            "demo_file": "account_2_demo.txt",
+            "onboarding_file": "account_2_onboarding.txt",
+            "v1_status": "skipped (already exists)",
+            "v2_status": "skipped (already exists)",
+            "errors": []
+        },
+        {
+            "account_id": "3",
+            "demo_file": "account_3_demo.txt",
+            "onboarding_file": "account_3_onboarding.txt",
+            "v1_status": "skipped (already exists)",
+            "v2_status": "skipped (already exists)",
+            "errors": []
+        },
+        {
+            "account_id": "4",
+            "demo_file": "account_4_demo.txt",
+            "onboarding_file": "account_4_onboarding.txt",
+            "v1_status": "skipped (already exists)",
+            "v2_status": "skipped (already exists)",
+            "errors": []
+        },
+        {
+            "account_id": "5",
+            "demo_file": "account_5_demo.txt",
+            "onboarding_file": "account_5_onboarding.txt",
+            "v1_status": "skipped (already exists)",
+            "v2_status": "skipped (already exists)",
+            "errors": []
+        },
+        {
+            "account_id": "6",
+            "demo_file": "account_6_demo.txt",
+            "onboarding_file": "account_6_onboarding.txt",
+            "v1_status": "skipped (already exists)",
+            "v2_status": "skipped (already exists)",
+            "errors": []
+        }
+    ],
+    "total": 6,
+    "succeeded": 6,
+    "failed": 0,
+    "skipped": 0,
+    "finished_at": "2026-03-06T15:37:27.354170"
+}

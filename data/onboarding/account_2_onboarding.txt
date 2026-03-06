@@ -1,0 +1,8 @@
+Agent: Apex Fire onboarding. Let's confirm details.
+Client: Hours are actually 7am to 5pm, not 4pm.
+Agent: Got it. And the emergency number?
+Client: Route emergencies to 555-0200.
+Agent: Fallback?
+Client: Apologize and say dispatch will call back in 5 mins.
+Agent: Any integration notes?
+Client: Never create sprinkler jobs in ServiceTrade.

@@ -1,0 +1,9 @@
+Client: Hi, Jim's Electrical here. Need help answering phones.
+Agent: Business hours?
+Client: 8-4 M-F, Mountain Time.
+Agent: What is an emergency?
+Client: Sparks, power outages, or downed lines.
+Agent: Routing?
+Client: Call the main office line, it auto-forwards.
+Agent: Any services we shouldn't handle?
+Client: We don't do residential solar.

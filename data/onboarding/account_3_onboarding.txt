@@ -1,0 +1,6 @@
+Agent: ACME HVAC onboarding.
+Client: Hi. For emergencies, the dispatch list number is 555-0300.
+Agent: Transfer timeout?
+Client: Give it 30 seconds. If it fails, say we're experiencing high volume and collect details.
+Agent: What about non-emergencies?
+Client: Non-emergencies should just be collected and told we'll call next business day.

@@ -1,0 +1,31 @@
+{
+    "account_id": "1",
+    "generated_at": "2026-03-06T14:12:04.238289",
+    "changes_count": 3,
+    "resolved_unknowns": [
+        "emergency_routing_rules: No routing number provided \u2013 confirm during onboarding"
+    ],
+    "remaining_unknowns": [],
+    "changes": [
+        {
+            "field": "emergency_routing_rules",
+            "before": "UNKNOWN \u2013 to be confirmed at onboarding",
+            "after": "555-0199 (Dispatch)",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "call_transfer_rules",
+            "before": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+            "after": "Fallback: text them immediately and hang up",
+            "reason": "Updated from onboarding call"
+        },
+        {
+            "field": "integration_constraints",
+            "before": [],
+            "after": [
+                "Don't schedule jobs for weekends"
+            ],
+            "reason": "Updated from onboarding call"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+# Large media files from Google Drive (too large for GitHub)
+data/real_samples/**/*.mp4
+data/real_samples/**/*.m4a
+data/real_samples/**/*.mp3
+data/real_samples/**/*.wav
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Mac/OS
+.DS_Store

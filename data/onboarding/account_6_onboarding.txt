@@ -1,0 +1,10 @@
+Agent: Welcome to onboarding, Ben's Electric Solutions.
+Client: Hi, I'm Ben. We need to tweak some things. 
+Agent: Let's confirm your hours.
+Client: Actually, we decided to drop the Friday hours to end at 3 PM.
+Agent: Got it. And the emergency routing?
+Client: If there's an emergency, route directly to my cell, 555-9999.
+Agent: What if the transfer fails?
+Client: If transfer fails, tell them to call 911 immediately if there is a fire risk, otherwise we will call them back in 15 minutes.
+Agent: Any special integration instructions?
+Client: Never schedule new breaker installations without an on-site quote first, tag all such jobs as 'Needs Review'.

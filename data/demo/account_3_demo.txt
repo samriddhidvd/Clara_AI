@@ -1,0 +1,9 @@
+Client: John here with ACME HVAC. Need something to handle overnight calls.
+Agent: When is 'overnight'?
+Client: We are open 9 AM to 6 PM, Mon-Sat. Central Time.
+Agent: Emergencies?
+Client: No cooling in summer or no heating in winter.
+Agent: How to route them?
+Client: Send to dispatch list.
+Agent: Okay, noted. 
+Client: We also fix commercial walk-in freezers.

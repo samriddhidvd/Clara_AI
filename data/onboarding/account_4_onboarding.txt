@@ -1,0 +1,6 @@
+Agent: Jim's Electrical onboarding.
+Client: The office line forwarding is broken. Send emergencies directly to 555-0400.
+Agent: Okay. Fallback?
+Client: If transfer fails after 45 seconds, notify dispatch via email and inform caller.
+Agent: Integration constraints?
+Client: We use Housecall Pro, make sure to tag calls as 'Urgent' if emergency.

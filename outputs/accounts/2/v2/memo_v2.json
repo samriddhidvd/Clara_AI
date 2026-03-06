@@ -1,0 +1,29 @@
+{
+    "account_id": "2",
+    "company_name": "Apex Fire Pro",
+    "business_hours": "actually 7am to 5pm, not 4pm",
+    "timezone": "Pacific",
+    "office_address": "UNKNOWN",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "Fire Protection",
+        "fire alarms going off",
+        "sprinkler leaks or fire alarms going off",
+        "alarms going off"
+    ],
+    "emergency_definition": [],
+    "emergency_routing_rules": "555-0200",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Fallback: Client: Apologize and say dispatch will call back in 5 mins",
+    "integration_constraints": [
+        "Never create sprinkler jobs in ServiceTrade"
+    ],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding"
+    ],
+    "data_source": "onboarding_call",
+    "extracted_at": "2026-03-06T14:12:04.253228",
+    "notes": "v2 \u2013 Confirmed onboarding. 4 field(s) updated. 1 unknown(s) remain."
+}

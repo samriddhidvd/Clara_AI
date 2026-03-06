@@ -1,0 +1,25 @@
+{
+    "account_id": "3",
+    "company_name": "ACME HVAC",
+    "business_hours": "9 AM to 6 PM, Mon-Sat Central",
+    "timezone": "Central",
+    "office_address": "UNKNOWN",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "freezers"
+    ],
+    "emergency_definition": [],
+    "emergency_routing_rules": "UNKNOWN \u2013 to be confirmed at onboarding",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+    "integration_constraints": [],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [
+        "emergency_definition: Emergency types not defined \u2013 confirm during onboarding",
+        "emergency_routing_rules: No routing number provided \u2013 confirm during onboarding"
+    ],
+    "data_source": "demo_call",
+    "extracted_at": "2026-03-06T14:12:04.259115",
+    "notes": "v1 \u2013 Preliminary. Generated from demo call transcript. 2 unknown(s) flagged."
+}

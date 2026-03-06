@@ -1,0 +1,28 @@
+{
+    "account_id": "1",
+    "company_name": "Bob from Bob's Plumbing",
+    "business_hours": "8 AM to 5 PM Eastern Time Eastern",
+    "timezone": "Eastern",
+    "office_address": "UNKNOWN",
+    "phone_numbers_mentioned": [],
+    "services_supported": [
+        "Plumbing",
+        "plumbing maintenance",
+        "maintenance"
+    ],
+    "emergency_definition": [
+        "Yes, burst pipes are our main emergency."
+    ],
+    "emergency_routing_rules": "UNKNOWN \u2013 to be confirmed at onboarding",
+    "non_emergency_routing_rules": "Take a message and confirm follow-up during business hours",
+    "call_transfer_rules": "Default: 30 second timeout \u2013 to be confirmed at onboarding",
+    "integration_constraints": [],
+    "after_hours_flow_summary": "Greet caller > Confirm purpose > If emergency: collect name/number/address > Attempt transfer > Fallback if fails > If non-emergency: take message > Close",
+    "office_hours_flow_summary": "Greet > Ask purpose > Collect name/number > Transfer/Route > Fallback if fails > Confirm next steps > Anything else? > Close",
+    "questions_or_unknowns": [
+        "emergency_routing_rules: No routing number provided \u2013 confirm during onboarding"
+    ],
+    "data_source": "demo_call",
+    "extracted_at": "2026-03-06T14:12:04.228643",
+    "notes": "v1 \u2013 Preliminary. Generated from demo call transcript. 1 unknown(s) flagged."
+}
